@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M12 8C12 5.79086 13.7909 4 16 4H37.1716C38.2324 4 39.2499 4.42143 40.0000 5.17157L51.8284 17C52.5786 17.7501 53 18.7676 53 19.8284V56C53 58.2091 51.2091 60 49 60H16C13.7909 60 12 58.2091 12 56V8Z" fill="white"/>
+  <path d="M12 8C12 5.79086 13.7909 4 16 4H37.1716C38.2324 4 39.2499 4.42143 40.0000 5.17157L51.8284 17C52.5786 17.7501 53 18.7676 53 19.8284V56C53 58.2091 51.2091 60 49 60H16C13.7909 60 12 58.2091 12 56V8Z" stroke="#039BE5" stroke-width="2"/>
+  
+  <path d="M38 4V14C38 15.6569 39.3431 17 41 17H53" stroke="#039BE5" stroke-width="2"/>
+  
+  <!-- Document content lines -->
+  <line x1="20" y1="28" x2="44" y2="28" stroke="#039BE5" stroke-width="2" stroke-linecap="round"/>
+  <line x1="20" y1="36" x2="44" y2="36" stroke="#039BE5" stroke-width="2" stroke-linecap="round"/>
+  <line x1="20" y1="44" x2="38" y2="44" stroke="#039BE5" stroke-width="2" stroke-linecap="round"/>
+</svg> 

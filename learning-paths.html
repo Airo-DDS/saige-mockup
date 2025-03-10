@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learning Paths | Saige - The Future of Dental Training</title>
+    <link href="https://fonts.googleapis.com/css2?family=Questrial&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        dental: {
+                            blue: '#039BE5',
+                            light: '#E1F5FE',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Questrial', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Questrial', sans-serif;
+        }
+        .sidebar {
+            transition: all 0.3s ease;
+        }
+        .chat-panel {
+            transition: transform 0.3s ease-in-out;
+        }
+        .chat-panel.hidden {
+            transform: translateX(100%);
+        }
+        .modal {
+            transition: opacity 0.3s ease;
+        }
+        .alert {
+            transition: all 0.3s ease;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 min-h-screen">
+    <div class="flex h-screen overflow-hidden">
+        <!-- Sidebar -->
+        <aside class="sidebar bg-white w-64 border-r border-gray-200 hidden md:block">
+            <div class="p-5 border-b border-gray-200">
+                <div class="flex items-center">
+                    <img src="images/saige-logo.svg" alt="Saige Logo" class="h-8 mr-2">
+                    <h1 class="text-xl font-semibold text-gray-800">Saige <span class="text-sm text-dental-blue">by AiroDental</span></h1>
+                </div>
+            </div>
+            <nav class="mt-6">
+                <a href="dashboard.html" class="flex items-center px-6 py-3 text-gray-600 hover:text-dental-blue hover:bg-dental-light hover:border-l-4 hover:border-dental-blue">
+                    <i class="fas fa-home mr-3"></i>
+                    <span>Dashboard</span>
+                </a>
+                <a href="learning-paths.html" class="flex items-center px-6 py-3 text-dental-blue border-l-4 border-dental-blue bg-dental-light">
+                    <i class="fas fa-road mr-3"></i>
+                    <span>Learning Paths</span>
+                </a>
+                <a href="knowledge-base.html" class="flex items-center px-6 py-3 text-gray-600 hover:text-dental-blue hover:bg-dental-light hover:border-l-4 hover:border-dental-blue">
+                    <i class="fas fa-book mr-3"></i>
+                    <span>Knowledge Base</span>
+                </a>
+                <a href="admin-console.html" class="flex items-center px-6 py-3 text-gray-600 hover:text-dental-blue hover:bg-dental-light hover:border-l-4 hover:border-dental-blue">
+                    <i class="fas fa-cog mr-3"></i>
+                    <span>Admin Console</span>
+                </a>
+            </nav>
+        </aside>
+
+        <!-- Main content -->
+        <div class="flex-1 flex flex-col overflow-hidden">
+            <!-- Top Navigation -->
+            <header class="bg-white border-b border-gray-200">
+                <div class="flex justify-between items-center py-4 px-6">
+                    <!-- Mobile menu button -->
+                    <button class="md:hidden" id="mobile-menu-button">
+                        <i class="fas fa-bars text-gray-500"></i>
+                    </button>
+                    <div class="md:hidden">
+                        <h1 class="text-xl font-semibold text-gray-800">Saige</h1>
+                    </div>
+                    <div class="flex items-center space-x-4">
+                        <div class="relative">
+                            <button class="text-gray-500 hover:text-dental-blue">
+                                <i class="fas fa-bell"></i>
+                                <span class="absolute top-0 right-0 h-2 w-2 bg-red-500 rounded-full"></span>
+                            </button>
+                        </div>
+                        <div class="flex items-center">
+                            <img class="h-8 w-8 rounded-full object-cover" src="/api/placeholder/32/32" alt="User avatar">
+                            <div class="ml-2">
+                                <p class="text-sm font-medium text-gray-700">Dr. Sarah Johnson</p>
+                                <p class="text-xs text-gray-500">Admin</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Main content area -->
+            <main class="flex-1 overflow-y-auto p-6">
+                <!-- Success Alert - Hidden by default -->
+                <div id="path-creation-success" class="alert hidden bg-green-100 border-l-4 border-green-500 text-green-700 p-4 mb-6 rounded" role="alert">
+                    <div class="flex">
+                        <div class="flex-shrink-0">
+                            <i class="fas fa-check-circle text-green-500"></i>
+                        </div>
+                        <div class="ml-3">
+                            <p class="font-medium">Success!</p>
+                            <p class="text-sm">Your new learning path has been created and is now available for assignment.</p>
+                        </div>
+                        <button class="ml-auto" onclick="this.parentElement.parentElement.classList.add('hidden')">
+                            <i class="fas fa-times text-green-500"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Learning Paths Header -->
+                <div class="flex justify-between items-center mb-6">
+                    <div>
+                        <h2 class="text-2xl font-semibold text-gray-800">Learning Paths</h2>
+                        <p class="text-gray-600">Structured training programs for your dental team</p>
+                    </div>
+                    <div class="flex space-x-3">
+                        <button data-modal-trigger="create-path-modal" class="bg-dental-blue text-white px-4 py-2 rounded-lg hover:bg-opacity-90 transition flex items-center">
+                            <i class="fas fa-plus mr-2"></i>
+                            <span>Create Custom Path</span>
+                        </button>
+                        <div class="relative">
+                            <input type="text" placeholder="Search paths..." class="border border-gray-300 rounded-lg pl-10 pr-4 py-2 focus:outline-none focus:ring-2 focus:ring-dental-blue">
+                            <i class="fas fa-search absolute left-3 top-2.5 text-gray-400"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Filter and Sort Options -->
+                <div class="bg-white rounded-lg shadow-sm p-4 mb-6">
+                    <div class="flex flex-col md:flex-row md:items-center md:justify-between">
+                        <div class="flex items-center space-x-4 mb-4 md:mb-0">
+                            <label class="text-sm font-medium text-gray-600">Filter by:</label>
+                            <select class="border border-gray-300 rounded-lg px-3 py-1 text-sm focus:outline-none focus:ring-2 focus:ring-dental-blue">
+                                <option>All Paths</option>
+                                <option>Standard Paths</option>
+                                <option>Custom Paths</option>
+                                <option>Assigned to Me</option>
+                                <option>Completed</option>
+                                <option>In Progress</option>
+                            </select>
+                            <select class="border border-gray-300 rounded-lg px-3 py-1 text-sm focus:outline-none focus:ring-2 focus:ring-dental-blue">
+                                <option>All Roles</option>
+                                <option>Front Desk</option>
+                                <option>Dental Assistant</option>
+                                <option>Hygienist</option>
+                                <option>Dentist</option>
+                                <option>Management</option>
+                            </select>
+                        </div>
+                        <div class="flex items-center space-x-4">
+                            <label class="text-sm font-medium text-gray-600">Sort by:</label>
+                            <select class="border border-gray-300 rounded-lg px-3 py-1 text-sm focus:outline-none focus:ring-2 focus:ring-dental-blue">
+                                <option>Newest First</option>
+                                <option>Oldest First</option>
+                                <option>Alphabetical (A-Z)</option>
+                                <option>Highest Completion</option>
+                                <option>Lowest Completion</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Recommended Paths -->
+                <div class="bg-white rounded-lg shadow-sm p-6 mb-8">
+                    <h3 class="text-lg font-semibold mb-4">Recommended for Your Role</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        <div class="border border-gray-200 rounded-lg p-4">
+                            <div class="bg-dental-light text-dental-blue text-xs px-2 py-1 rounded-full inline-block mb-2">Recommended</div>
+                            <h4 class="text-md font-medium mb-2">Advanced Patient Communication</h4>
+                            <p class="text-sm text-gray-600 mb-4">Master the art of effective patient communication, building trust, and managing difficult conversations.</p>
+                            <div class="flex justify-between items-center text-xs text-gray-500 mb-3">
+                                <span>8 modules | 3-4 hours</span>
+                                <span>4.9 <i class="fas fa-star text-yellow-400"></i></span>
+                            </div>
+                            <div class="w-full bg-gray-100 rounded-full h-2 mb-1">
+                                <div class="bg-dental-blue h-2 rounded-full" style="width: 35%"></div>
+                            </div>
+                            <div class="flex justify-between text-xs text-gray-500 mb-4">
+                                <span>35% complete</span>
+                                <span>Last activity: 2 days ago</span>
+                            </div>
+                            <button class="w-full py-2 bg-dental-blue text-white rounded-lg hover:bg-opacity-90 transition">Continue Learning</button>
+                        </div>
+
+                        <div class="border border-gray-200 rounded-lg p-4">
+                            <div class="bg-dental-light text-dental-blue text-xs px-2 py-1 rounded-full inline-block mb-2">Recommended</div>
+                            <h4 class="text-md font-medium mb-2">Leadership in Dental Practice</h4>
+                            <p class="text-sm text-gray-600 mb-4">Essential leadership skills for dental practice managers, including team building and performance management.</p>
+                            <div class="flex justify-between items-center text-xs text-gray-500 mb-3">
+                                <span>10 modules | 5-6 hours</span>
+                                <span>4.8 <i class="fas fa-star text-yellow-400"></i></span>
+                            </div>
+                            <div class="w-full bg-gray-100 rounded-full h-2 mb-1">
+                                <div class="bg-dental-blue h-2 rounded-full" style="width: 0%"></div>
+                            </div>
+                            <div class="flex justify-between text-xs text-gray-500 mb-4">
+                                <span>Not started</span>
+                                <span>-</span>
+                            </div>
+                            <button class="w-full py-2 bg-dental-blue text-white rounded-lg hover:bg-opacity-90 transition">Start Learning</button>
+                        </div>
+
+                        <div class="border border-gray-200 rounded-lg p-4">
+                            <div class="bg-dental-light text-dental-blue text-xs px-2 py-1 rounded-full inline-block mb-2">Recommended</div>
+                            <h4 class="text-md font-medium mb-2">Practice Growth Strategies</h4>
+                            <p class="text-sm text-gray-600 mb-4">Learn effective methods for patient retention, referral generation, and practice marketing.</p>
+                            <div class="flex justify-between items-center text-xs text-gray-500 mb-3">
+                                <span>6 modules | 3 hours</span>
+                                <span>4.7 <i class="fas fa-star text-yellow-400"></i></span>
+                            </div>
+                            <div class="w-full bg-gray-100 rounded-full h-2 mb-1">
+                                <div class="bg-dental-blue h-2 rounded-full" style="width: 0%"></div>
+                            </div>
+                            <div class="flex justify-between text-xs text-gray-500 mb-4">
+                                <span>Not started</span>
+                                <span>-</span>
+                            </div>
+                            <button class="w-full py-2 bg-dental-blue text-white rounded-lg hover:bg-opacity-90 transition">Start Learning</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- All Learning Paths -->
+                <div class="bg-white rounded-lg shadow-sm p-6 mb-8">
+                    <h3 class="text-lg font-semibold mb-4">All Learning Paths</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        <!-- Front Desk Essentials -->
+                        <div class="border border-gray-200 rounded-lg p-4">
+                            <div class="bg-gray-100 text-gray-600 text-xs px-2 py-1 rounded-full inline-block mb-2">Standard</div>
+                            <h4 class="text-md font-medium mb-2">Front Desk Essentials</h4>
+                            <p class="text-sm text-gray-600 mb-4">Core training for reception, scheduling, and patient management.</p>
+                            <div class="flex justify-between items-center text-xs text-gray-500 mb-3">
+                                <span>14 modules | 7-8 hours</span>
+                                <span>4.8 <i class="fas fa-star text-yellow-400"></i></span>
+                            </div>
+                            <div class="w-full bg-gray-100 rounded-full h-2 mb-1">
+                                <div class="bg-dental-blue h-2 rounded-full" style="width: 50%"></div>
+                            </div>
+                            <div class="flex justify-between text-xs text-gray-500 mb-4">
+                                <span>50% complete</span>
+                                <span>Last activity: Yesterday</span>
+                            </div>
+                            <button class="w-full py-2 bg-dental-blue text-white rounded-lg hover:bg-opacity-90 transition">Continue Learning</button>
+                        </div>
+
+                        <!-- Dental Assistant 101 -->
+                        <div class="border border-gray-200 rounded-lg p-4">
+                            <div class="bg-gray-100 text-gray-600 text-xs px-2 py-1 rounded-full inline-block mb-2">Standard</div>
+                            <h4 class="text-md font-medium mb-2">Dental Assistant 101</h4>
+                            <p class="text-sm text-gray-600 mb-4">Essential skills for chairside assistance and patient care.</p>
+                            <div class="flex justify-between items-center text-xs text-gray-500 mb-3">
+                                <span>10 modules | 6 hours</span>
+                                <span>4.7 <i class="fas fa-star text-yellow-400"></i></span>
+                            </div>
+                            <div class="w-full bg-gray-100 rounded-full h-2 mb-1">
+                                <div class="bg-dental-blue h-2 rounded-full" style="width: 30%"></div>
+                            </div>
+                            <div class="flex justify-between text-xs text-gray-500 mb-4">
+                                <span>30% complete</span>
+                                <span>Last activity: 3 days ago</span>
+                            </div>
+                            <button class="w-full py-2 bg-dental-blue text-white rounded-lg hover:bg-opacity-90 transition">Continue Learning</button>
+                        </div>
+
+                        <!-- Billing & Insurance Mastery -->
+                        <div class="border border-gray-200 rounded-lg p-4">
+                            <div class="bg-gray-100 text-gray-600 text-xs px-2 py-1 rounded-full inline-block mb-2">Standard</div>
+                            <h4 class="text-md font-medium mb-2">Billing & Insurance Mastery</h4>
+                            <p class="text-sm text-gray-600 mb-4">Advanced training on claims, coding, and insurance verification.</p>
+                            <div class="flex justify-between items-center text-xs text-gray-500 mb-3">
+                                <span>10 modules | 5 hours</span>
+                                <span>4.9 <i class="fas fa-star text-yellow-400"></i></span>
+                            </div>
+                            <div class="w-full bg-gray-100 rounded-full h-2 mb-1">
+                                <div class="bg-dental-blue h-2 rounded-full" style="width: 80%"></div>
+                            </div>
+                            <div class="flex justify-between text-xs text-gray-500 mb-4">
+                                <span>80% complete</span>
+                                <span>Last activity: Today</span>
+                            </div>
+                            <button class="w-full py-2 bg-dental-blue text-white rounded-lg hover:bg-opacity-90 transition">Continue Learning</button>
+                        </div>
+
+                        <!-- Hygiene Excellence -->
+                        <div class="border border-gray-200 rounded-lg p-4">
+                            <div class="bg-gray-100 text-gray-600 text-xs px-2 py-1 rounded-full inline-block mb-2">Standard</div>
+                            <h4 class="text-md font-medium mb-2">Hygiene Excellence</h4>
+                            <p class="text-sm text-gray-600 mb-4">Advanced techniques and best practices for dental hygienists.</p>
+                            <div class="flex justify-between items-center text-xs text-gray-500 mb-3">
+                                <span>12 modules | 6-7 hours</span>
+                                <span>4.8 <i class="fas fa-star text-yellow-400"></i></span>
+                            </div>
+                            <div class="w-full bg-gray-100 rounded-full h-2 mb-1">
+                                <div class="bg-dental-blue h-2 rounded-full" style="width: 60%"></div>
+                            </div>
+                            <div class="flex justify-between text-xs text-gray-500 mb-4">
+                                <span>60% complete</span>
+                                <span>Last activity: Yesterday</span>
+                            </div>
+                            <button class="w-full py-2 bg-dental-blue text-white rounded-lg hover:bg-opacity-90 transition">Continue Learning</button>
+                        </div>
+
+                        <!-- Patient Communication -->
+                        <div class="border border-gray-200 rounded-lg p-4">
+                            <div class="bg-gray-100 text-gray-600 text-xs px-2 py-1 rounded-full inline-block mb-2">Standard</div>
+                            <h4 class="text-md font-medium mb-2">Patient Communication</h4>
+                            <p class="text-sm text-gray-600 mb-4">Effective strategies for patient education and treatment acceptance.</p>
+                            <div class="flex justify-between items-center text-xs text-gray-500 mb-3">
+                                <span>8 modules | 4 hours</span>
+                                <span>4.7 <i class="fas fa-star text-yellow-400"></i></span>
+                            </div>
+                            <div class="w-full bg-gray-100 rounded-full h-2 mb-1">
+                                <div class="bg-dental-blue h-2 rounded-full" style="width: 40%"></div>
+                            </div>
+                            <div class="flex justify-between text-xs text-gray-500 mb-4">
+                                <span>40% complete</span>
+                                <span>Last activity: 4 days ago</span>
+                            </div>
+                            <button class="w-full py-2 bg-dental-blue text-white rounded-lg hover:bg-opacity-90 transition">Continue Learning</button>
+                        </div>
+
+                        <!-- Advanced Clinical Techniques -->
+                        <div class="border border-gray-200 rounded-lg p-4">
+                            <div class="bg-gray-100 text-gray-600 text-xs px-2 py-1 rounded-full inline-block mb-2">Standard</div>
+                            <h4 class="text-md font-medium mb-2">Advanced Clinical Techniques</h4>
+                            <p class="text-sm text-gray-600 mb-4">Cutting-edge procedures and techniques for dental professionals.</p>
+                            <div class="flex justify-between items-center text-xs text-gray-500 mb-3">
+                                <span>14 modules | 8 hours</span>
+                                <span>4.9 <i class="fas fa-star text-yellow-400"></i></span>
+                            </div>
+                            <div class="w-full bg-gray-100 rounded-full h-2 mb-1">
+                                <div class="bg-dental-blue h-2 rounded-full" style="width: 85%"></div>
+                            </div>
+                            <div class="flex justify-between text-xs text-gray-500 mb-4">
+                                <span>85% complete</span>
+                                <span>Last activity: 2 days ago</span>
+                            </div>
+                            <button class="w-full py-2 bg-dental-blue text-white rounded-lg hover:bg-opacity-90 transition">Continue Learning</button>
+                        </div>
+
+                        <!-- OSHA & Compliance -->
+                        <div class="border border-gray-200 rounded-lg p-4">
+                            <div class="bg-purple-100 text-purple-600 text-xs px-2 py-1 rounded-full inline-block mb-2">Required</div>
+                            <h4 class="text-md font-medium mb-2">OSHA & Compliance</h4>
+                            <p class="text-sm text-gray-600 mb-4">Essential training on safety regulations and compliance requirements.</p>
+                            <div class="flex justify-between items-center text-xs text-gray-500 mb-3">
+                                <span>6 modules | 3 hours</span>
+                                <span>4.6 <i class="fas fa-star text-yellow-400"></i></span>
+                            </div>
+                            <div class="w-full bg-gray-100 rounded-full h-2 mb-1">
+                                <div class="bg-dental-blue h-2 rounded-full" style="width: 100%"></div>
+                            </div>
+                            <div class="flex justify-between text-xs text-gray-500 mb-4">
+                                <span>100% complete</span>
+                                <span>Completed on: Jan 15, 2025</span>
+                            </div>
+                            <button class="w-full py-2 bg-gray-300 text-gray-700 rounded-lg hover:bg-gray-400 transition">View Certificate</button>
+                        </div>
+
+                        <!-- Team Onboarding -->
+                        <div class="border border-gray-200 rounded-lg p-4">
+                            <div class="bg-purple-100 text-purple-600 text-xs px-2 py-1 rounded-full inline-block mb-2">Required</div>
+                            <h4 class="text-md font-medium mb-2">Team Onboarding</h4>
+                            <p class="text-sm text-gray-600 mb-4">Essential training for new team members joining the practice.</p>
+                            <div class="flex justify-between items-center text-xs text-gray-500 mb-3">
+                                <span>5 modules | 2.5 hours</span>
+                                <span>4.7 <i class="fas fa-star text-yellow-400"></i></span>
+                            </div>
+                            <div class="w-full bg-gray-100 rounded-full h-2 mb-1">
+                                <div class="bg-dental-blue h-2 rounded-full" style="width: 100%"></div>
+                            </div>
+                            <div class="flex justify-between text-xs text-gray-500 mb-4">
+                                <span>100% complete</span>
+                                <span>Completed on: Dec 5, 2024</span>
+                            </div>
+                            <button class="w-full py-2 bg-gray-300 text-gray-700 rounded-lg hover:bg-gray-400 transition">View Certificate</button>
+                        </div>
+
+                        <!-- Custom: Front Office Excellence -->
+                        <div class="border border-gray-200 rounded-lg p-4">
+                            <div class="bg-amber-100 text-amber-600 text-xs px-2 py-1 rounded-full inline-block mb-2">Custom</div>
+                            <h4 class="text-md font-medium mb-2">Front Office Excellence</h4>
+                            <p class="text-sm text-gray-600 mb-4">Custom training program for front office staff based on practice needs.</p>
+                            <div class="flex justify-between items-center text-xs text-gray-500 mb-3">
+                                <span>8 modules | 4 hours</span>
+                                <span>Created: Jan 10, 2025</span>
+                            </div>
+                            <div class="w-full bg-gray-100 rounded-full h-2 mb-1">
+                                <div class="bg-dental-blue h-2 rounded-full" style="width: 25%"></div>
+                            </div>
+                            <div class="flex justify-between text-xs text-gray-500 mb-4">
+                                <span>25% complete</span>
+                                <span>Last activity: 5 days ago</span>
+                            </div>
+                            <button class="w-full py-2 bg-dental-blue text-white rounded-lg hover:bg-opacity-90 transition">Continue Learning</button>
+                        </div>
+                    </div>
+                    <div class="mt-6 text-center">
+                        <button class="px-4 py-2 text-dental-blue hover:underline">Load More Learning Paths</button>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <!-- Chat with Saige button -->
+    <button id="chat-button" class="fixed bottom-6 right-6 bg-dental-blue text-white rounded-full p-4 shadow-lg hover:bg-opacity-90 transition z-50">
+        <div class="flex items-center">
+            <i class="fas fa-comment-dots mr-2"></i>
+            <span>Ask Saige 🌿</span>
+        </div>
+    </button>
+
+    <!-- Chat Panel -->
+    <div id="chat-panel" class="chat-panel hidden fixed top-0 right-0 h-full w-full sm:w-96 bg-white shadow-lg z-50 flex flex-col">
+        <div class="p-4 border-b border-gray-200 flex justify-between items-center">
+            <div>
+                <h3 class="font-semibold">Ask Saige 🌿</h3>
+                <p class="text-xs text-gray-500">Your AI Dental Coach</p>
+            </div>
+            <button id="close-chat" class="text-gray-500 hover:text-gray-700">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="p-3 border-b border-gray-200 bg-dental-light">
+            <p class="text-xs text-dental-blue">Progress Tracking: 72% of Learning Path Completed</p>
+        </div>
+        <div class="flex-1 overflow-y-auto p-4" id="chat-messages">
+            <!-- Message from Saige -->
+            <div class="flex mb-4">
+                <div class="flex-shrink-0 mr-3">
+                    <div class="h-8 w-8 rounded-full bg-dental-light flex items-center justify-center">
+                        <span class="text-dental-blue text-xs">🌿</span>
+                    </div>
+                </div>
+                <div class="bg-gray-100 rounded-lg p-3 max-w-xs">
+                    <p class="text-sm">Looking for a specific learning path? Let me know what skills you're interested in developing, and I can recommend the best option for you.</p>
+                    <p class="text-xs text-gray-500 mt-1">11:30 AM</p>
+                </div>
+            </div>
+        </div>
+        <div class="border-t border-gray-200 p-4">
+            <div class="flex items-center">
+                <input type="text" placeholder="Type your message..." class="flex-1 border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-dental-blue">
+                <button id="send-message" class="ml-2 bg-dental-blue text-white rounded-lg p-2">
+                    <i class="fas fa-paper-plane"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Create Custom Learning Path Modal -->
+    <div id="create-path-modal" class="modal hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+        <div class="bg-white rounded-lg shadow-xl w-full max-w-xl">
+            <div class="p-6 border-b border-gray-200">
+                <div class="flex justify-between items-center">
+                    <h3 class="text-xl font-semibold">Create Custom Learning Path</h3>
+                    <button class="modal-close text-gray-500 hover:text-gray-700">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="p-6">
+                <form>
+                    <div class="mb-4">
+                        <label for="path-title" class="block text-gray-700 mb-2">Learning Path Title</label>
+                        <input type="text" id="path-title" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-dental-blue" placeholder="Enter a title for your learning path">
+                    </div>
+                    <div class="mb-4">
+                        <label for="path-description" class="block text-gray-700 mb-2">Description</label>
+                        <textarea id="path-description" rows="3" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-dental-blue" placeholder="Briefly describe the purpose and learning objectives"></textarea>
+                    </div>
+                    <div class="mb-4">
+                        <label for="target-role" class="block text-gray-700 mb-2">Target Role</label>
+                        <select id="target-role" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-dental-blue">
+                            <option value="" disabled selected>Select primary role for this path</option>
+                            <option>Front Desk</option>
+                            <option>Dental Assistant</option>
+                            <option>Hygienist</option>
+                            <option>Dentist</option>
+                            <option>All Staff</option>
+                        </select>
+                    </div>
+                    <div class="mb-4">
+                        <label class="block text-gray-700 mb-2">Add Content</label>
+                        <div class="border border-gray-200 rounded-lg p-4">
+                            <div class="flex flex-col space-y-3">
+                                <div class="flex items-center">
+                                    <input type="checkbox" id="module1" class="mr-2">
+                                    <label for="module1" class="text-sm">Patient Communication Basics</label>
+                                </div>
+                                <div class="flex items-center">
+                                    <input type="checkbox" id="module2" class="mr-2">
+                                    <label for="module2" class="text-sm">Insurance Verification</label>
+                                </div>
+                                <div class="flex items-center">
+                                    <input type="checkbox" id="module3" class="mr-2">
+                                    <label for="module3" class="text-sm">HIPAA Compliance</label>
+                                </div>
+                                <div class="flex items-center">
+                                    <input type="checkbox" id="module4" class="mr-2">
+                                    <label for="module4" class="text-sm">Scheduling Best Practices</label>
+                                </div>
+                                <div class="flex items-center">
+                                    <input type="checkbox" id="module5" class="mr-2">
+                                    <label for="module5" class="text-sm">Patient Documentation</label>
+                                </div>
+                            </div>
+                            <button class="mt-3 text-dental-blue text-sm hover:underline flex items-center">
+                                <i class="fas fa-plus mr-1"></i> Add Custom Module
+                            </button>
+                        </div>
+                    </div>
+                    <div class="mb-4">
+                        <label class="block text-gray-700 mb-2">Upload Custom Content (Optional)</label>
+                        <div class="border border-dashed border-gray-300 rounded-lg p-4 text-center">
+                            <i class="fas fa-cloud-upload-alt text-gray-400 text-3xl mb-2"></i>
+                            <p class="text-sm text-gray-500 mb-2">Drag and drop files here, or click to browse</p>
+                            <p class="text-xs text-gray-400">Supported formats: PDF, DOCX, PPT, MP4, MP3 (Max 100MB)</p>
+                            <input type="file" class="hidden" id="file-upload">
+                            <button type="button" onclick="document.getElementById('file-upload').click()" class="mt-2 px-3 py-1 bg-gray-100 text-gray-700 rounded-lg text-sm hover:bg-gray-200">Browse Files</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="p-6 border-t border-gray-200 flex justify-end">
+                <button class="modal-close px-4 py-2 border border-gray-300 rounded-lg text-gray-700 mr-3 hover:bg-gray-50">Cancel</button>
+                <button id="create-path-button" class="px-4 py-2 bg-dental-blue text-white rounded-lg hover:bg-opacity-90">Create Learning Path</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

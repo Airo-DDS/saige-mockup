@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="480" height="280" viewBox="0 0 480 280" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="480" height="280" rx="12" fill="#F9FCFF"/>
+  
+  <!-- Dental Chart Representation -->
+  <rect x="40" y="40" width="400" height="200" rx="8" fill="white" stroke="#E1F5FE" stroke-width="2"/>
+  
+  <!-- Teeth Outlines - Top Row -->
+  <path d="M80 80C80 75.582 83.582 72 88 72H102C106.418 72 110 75.582 110 80V100C110 104.418 106.418 108 102 108H88C83.582 108 80 104.418 80 100V80Z" stroke="#039BE5" stroke-width="1"/>
+  <path d="M120 80C120 75.582 123.582 72 128 72H142C146.418 72 150 75.582 150 80V100C150 104.418 146.418 108 142 108H128C123.582 108 120 104.418 120 100V80Z" stroke="#039BE5" stroke-width="1"/>
+  <path d="M160 80C160 75.582 163.582 72 168 72H182C186.418 72 190 75.582 190 80V100C190 104.418 186.418 108 182 108H168C163.582 108 160 104.418 160 100V80Z" stroke="#039BE5" stroke-width="1"/>
+  <path d="M200 80C200 75.582 203.582 72 208 72H222C226.418 72 230 75.582 230 80V100C230 104.418 226.418 108 222 108H208C203.582 108 200 104.418 200 100V80Z" stroke="#039BE5" stroke-width="1"/>
+  <path d="M240 80C240 75.582 243.582 72 248 72H262C266.418 72 270 75.582 270 80V100C270 104.418 266.418 108 262 108H248C243.582 108 240 104.418 240 100V80Z" stroke="#039BE5" stroke-width="1"/>
+  <path d="M280 80C280 75.582 283.582 72 288 72H302C306.418 72 310 75.582 310 80V100C310 104.418 306.418 108 302 108H288C283.582 108 280 104.418 280 100V80Z" stroke="#039BE5" stroke-width="1"/>
+  <path d="M320 80C320 75.582 323.582 72 328 72H342C346.418 72 350 75.582 350 80V100C350 104.418 346.418 108 342 108H328C323.582 108 320 104.418 320 100V80Z" stroke="#039BE5" stroke-width="1"/>
+  <path d="M360 80C360 75.582 363.582 72 368 72H382C386.418 72 390 75.582 390 80V100C390 104.418 386.418 108 382 108H368C363.582 108 360 104.418 360 100V80Z" stroke="#039BE5" stroke-width="1"/>
+  
+  <!-- Teeth Outlines - Bottom Row -->
+  <path d="M80 160C80 155.582 83.582 152 88 152H102C106.418 152 110 155.582 110 160V180C110 184.418 106.418 188 102 188H88C83.582 188 80 184.418 80 180V160Z" stroke="#039BE5" stroke-width="1"/>
+  <path d="M120 160C120 155.582 123.582 152 128 152H142C146.418 152 150 155.582 150 160V180C150 184.418 146.418 188 142 188H128C123.582 188 120 184.418 120 180V160Z" stroke="#039BE5" stroke-width="1"/>
+  <path d="M160 160C160 155.582 163.582 152 168 152H182C186.418 152 190 155.582 190 160V180C190 184.418 186.418 188 182 188H168C163.582 188 160 184.418 160 180V160Z" stroke="#039BE5" stroke-width="1"/>
+  <path d="M200 160C200 155.582 203.582 152 208 152H222C226.418 152 230 155.582 230 160V180C230 184.418 226.418 188 222 188H208C203.582 188 200 184.418 200 180V160Z" stroke="#039BE5" stroke-width="1"/>
+  <path d="M240 160C240 155.582 243.582 152 248 152H262C266.418 152 270 155.582 270 160V180C270 184.418 266.418 188 262 188H248C243.582 188 240 184.418 240 180V160Z" stroke="#039BE5" stroke-width="1"/>
+  <path d="M280 160C280 155.582 283.582 152 288 152H302C306.418 152 310 155.582 310 160V180C310 184.418 306.418 188 302 188H288C283.582 188 280 184.418 280 180V160Z" stroke="#039BE5" stroke-width="1"/>
+  <path d="M320 160C320 155.582 323.582 152 328 152H342C346.418 152 350 155.582 350 160V180C350 184.418 346.418 188 342 188H328C323.582 188 320 184.418 320 180V160Z" stroke="#039BE5" stroke-width="1"/>
+  <path d="M360 160C360 155.582 363.582 152 368 152H382C386.418 152 390 155.582 390 160V180C390 184.418 386.418 188 382 188H368C363.582 188 360 184.418 360 180V160Z" stroke="#039BE5" stroke-width="1"/>
+  
+  <!-- Middle Divider with Annotations -->
+  <line x1="40" y1="130" x2="440" y2="130" stroke="#E1F5FE" stroke-width="2" stroke-dasharray="4 4"/>
+  <text x="45" y="127" font-family="Arial" font-size="9" fill="#039BE5">Upper</text>
+  <text x="45" y="147" font-family="Arial" font-size="9" fill="#039BE5">Lower</text>
+  
+  <!-- Sample Color Coding - Treatment Areas -->
+  <rect x="200" y="72" width="30" height="36" rx="4" fill="#039BE5" fill-opacity="0.2"/>
+  <rect x="280" y="152" width="30" height="36" rx="4" fill="#FFC107" fill-opacity="0.2"/>
+  <rect x="160" y="152" width="30" height="36" rx="4" fill="#4CAF50" fill-opacity="0.2"/>
+  
+  <!-- Annotations -->
+  <text x="240" y="40" font-family="Arial" font-size="12" fill="#039BE5" text-anchor="middle">Dental Chart Overview</text>
+  <text x="240" y="230" font-family="Arial" font-size="10" fill="#666666" text-anchor="middle">Training Progress: Click on any area for detailed training content</text>
+</svg> 

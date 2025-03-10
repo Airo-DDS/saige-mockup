@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard | Saige - The Future of Dental Training</title>
+    <link href="https://fonts.googleapis.com/css2?family=Questrial&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        dental: {
+                            blue: '#039BE5',
+                            light: '#E1F5FE',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Questrial', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Questrial', sans-serif;
+        }
+        .sidebar {
+            transition: all 0.3s ease;
+        }
+        .chat-panel {
+            transition: transform 0.3s ease-in-out;
+        }
+        .chat-panel.hidden {
+            transform: translateX(100%);
+        }
+    </style>
+</head>
+<body class="bg-gray-50 min-h-screen">
+    <div class="flex h-screen overflow-hidden">
+        <!-- Sidebar -->
+        <aside class="sidebar bg-white w-64 border-r border-gray-200 hidden md:block">
+            <div class="p-5 border-b border-gray-200">
+                <h1 class="text-xl font-semibold text-gray-800">Saige <span class="text-sm text-dental-blue">by AiroDental</span></h1>
+            </div>
+            <nav class="mt-6">
+                <a href="#" class="flex items-center px-6 py-3 text-dental-blue border-l-4 border-dental-blue bg-dental-light">
+                    <i class="fas fa-home mr-3"></i>
+                    <span>Dashboard</span>
+                </a>
+                <a href="#" class="flex items-center px-6 py-3 text-gray-600 hover:text-dental-blue hover:bg-dental-light hover:border-l-4 hover:border-dental-blue">
+                    <i class="fas fa-road mr-3"></i>
+                    <span>Learning Paths</span>
+                </a>
+                <a href="#" class="flex items-center px-6 py-3 text-gray-600 hover:text-dental-blue hover:bg-dental-light hover:border-l-4 hover:border-dental-blue">
+                    <i class="fas fa-book mr-3"></i>
+                    <span>Knowledge Base</span>
+                </a>
+                <a href="#" class="flex items-center px-6 py-3 text-gray-600 hover:text-dental-blue hover:bg-dental-light hover:border-l-4 hover:border-dental-blue">
+                    <i class="fas fa-cog mr-3"></i>
+                    <span>Admin Console</span>
+                </a>
+            </nav>
+        </aside>
+
+        <!-- Main content -->
+        <div class="flex-1 flex flex-col overflow-hidden">
+            <!-- Top Navigation -->
+            <header class="bg-white border-b border-gray-200">
+                <div class="flex justify-between items-center py-4 px-6">
+                    <!-- Mobile menu button -->
+                    <button class="md:hidden" id="mobile-menu-button">
+                        <i class="fas fa-bars text-gray-500"></i>
+                    </button>
+                    <div class="md:hidden">
+                        <h1 class="text-xl font-semibold text-gray-800">Saige</h1>
+                    </div>
+                    <div class="flex items-center space-x-4">
+                        <div class="relative">
+                            <button class="text-gray-500 hover:text-dental-blue">
+                                <i class="fas fa-bell"></i>
+                                <span class="absolute top-0 right-0 h-2 w-2 bg-red-500 rounded-full"></span>
+                            </button>
+                        </div>
+                        <div class="flex items-center">
+                            <img class="h-8 w-8 rounded-full object-cover" src="/api/placeholder/32/32" alt="User avatar">
+                            <div class="ml-2">
+                                <p class="text-sm font-medium text-gray-700">Dr. Sarah Johnson</p>
+                                <p class="text-xs text-gray-500">Admin</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Main content area -->
+            <main class="flex-1 overflow-y-auto p-6">
+                <!-- Welcome Banner -->
+                <div class="bg-white rounded-lg shadow-sm p-6 mb-6">
+                    <h2 class="text-2xl font-semibold mb-2">Welcome back, Dr. Sarah! 👋</h2>
+                    <p class="text-gray-600">Here's an overview of your practice's training progress.</p>
+                </div>
+
+                <!-- Key Metrics -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+                    <!-- Active Learning Paths -->
+                    <div class="bg-white rounded-lg shadow-sm p-6">
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <p class="text-sm font-medium text-gray-500 mb-1">Active Learning Paths</p>
+                                <h3 class="text-2xl font-semibold">12</h3>
+                            </div>
+                            <div class="p-2 bg-dental-light rounded-lg">
+                                <i class="fas fa-road text-dental-blue"></i>
+                            </div>
+                        </div>
+                        <div class="mt-4">
+                            <div class="w-full bg-gray-100 rounded-full h-2">
+                                <div class="bg-dental-blue h-2 rounded-full" style="width: 75%"></div>
+                            </div>
+                            <p class="text-xs text-gray-500 mt-1">75% overall completion</p>
+                        </div>
+                    </div>
+
+                    <!-- Team Members Enrolled -->
+                    <div class="bg-white rounded-lg shadow-sm p-6">
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <p class="text-sm font-medium text-gray-500 mb-1">Team Members Enrolled</p>
+                                <h3 class="text-2xl font-semibold">28</h3>
+                            </div>
+                            <div class="p-2 bg-dental-light rounded-lg">
+                                <i class="fas fa-users text-dental-blue"></i>
+                            </div>
+                        </div>
+                        <div class="mt-4">
+                            <div class="flex -space-x-2">
+                                <img class="h-6 w-6 rounded-full border-2 border-white" src="/api/placeholder/24/24" alt="User">
+                                <img class="h-6 w-6 rounded-full border-2 border-white" src="/api/placeholder/24/24" alt="User">
+                                <img class="h-6 w-6 rounded-full border-2 border-white" src="/api/placeholder/24/24" alt="User">
+                                <div class="h-6 w-6 rounded-full border-2 border-white bg-gray-200 flex items-center justify-center">
+                                    <span class="text-xs text-gray-600">+25</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Overall Completion Rate -->
+                    <div class="bg-white rounded-lg shadow-sm p-6">
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <p class="text-sm font-medium text-gray-500 mb-1">Completion Rate</p>
+                                <h3 class="text-2xl font-semibold">78%</h3>
+                            </div>
+                            <div class="p-2 bg-dental-light rounded-lg">
+                                <i class="fas fa-chart-line text-dental-blue"></i>
+                            </div>
+                        </div>
+                        <div class="mt-4">
+                            <div class="w-full bg-gray-100 rounded-full h-2">
+                                <div class="bg-green-500 h-2 rounded-full" style="width: 78%"></div>
+                            </div>
+                            <p class="text-xs text-green-500 mt-1">↑ 5% from last month</p>
+                        </div>
+                    </div>
+
+                    <!-- Pending Chat Inquiries -->
+                    <div class="bg-white rounded-lg shadow-sm p-6">
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <p class="text-sm font-medium text-gray-500 mb-1">Pending Inquiries</p>
+                                <h3 class="text-2xl font-semibold">7</h3>
+                            </div>
+                            <div class="p-2 bg-dental-light rounded-lg">
+                                <i class="fas fa-comment-dots text-dental-blue"></i>
+                            </div>
+                        </div>
+                        <div class="mt-4">
+                            <button class="text-dental-blue text-sm hover:underline">View all inquiries</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- AI-Generated Progress & Recent Activities -->
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
+                    <!-- AI-Generated Progress -->
+                    <div class="col-span-1 bg-white rounded-lg shadow-sm p-6">
+                        <h3 class="text-lg font-semibold mb-4">AI-Generated Insights ✨</h3>
+                        <div class="mb-4">
+                            <p class="text-sm text-gray-600 mb-2">Overall Staff Mastery</p>
+                            <div class="flex items-center">
+                                <div class="w-full bg-gray-100 rounded-full h-2 mr-2">
+                                    <div class="bg-dental-blue h-2 rounded-full" style="width: 78%"></div>
+                                </div>
+                                <span class="text-sm font-medium">78%</span>
+                            </div>
+                        </div>
+                        <div class="mb-4">
+                            <p class="text-sm text-gray-600 mb-2">Front Desk Team</p>
+                            <div class="flex items-center">
+                                <div class="w-full bg-gray-100 rounded-full h-2 mr-2">
+                                    <div class="bg-dental-blue h-2 rounded-full" style="width: 82%"></div>
+                                </div>
+                                <span class="text-sm font-medium">82%</span>
+                            </div>
+                        </div>
+                        <div class="mb-4">
+                            <p class="text-sm text-gray-600 mb-2">Dental Assistants</p>
+                            <div class="flex items-center">
+                                <div class="w-full bg-gray-100 rounded-full h-2 mr-2">
+                                    <div class="bg-dental-blue h-2 rounded-full" style="width: 75%"></div>
+                                </div>
+                                <span class="text-sm font-medium">75%</span>
+                            </div>
+                        </div>
+                        <div>
+                            <p class="text-sm text-gray-600 mb-2">Hygienists</p>
+                            <div class="flex items-center">
+                                <div class="w-full bg-gray-100 rounded-full h-2 mr-2">
+                                    <div class="bg-dental-blue h-2 rounded-full" style="width: 70%"></div>
+                                </div>
+                                <span class="text-sm font-medium">70%</span>
+                            </div>
+                        </div>
+                        <div class="mt-4 text-xs text-gray-500">
+                            <p>AI-based assessment from chat interactions and learning path progress.</p>
+                        </div>
+                    </div>
+
+                    <!-- Recent Chat Q&A Snippets -->
+                    <div class="col-span-1 lg:col-span-2 bg-white rounded-lg shadow-sm p-6">
+                        <h3 class="text-lg font-semibold mb-4">Recent Chat Q&A</h3>
+                        <div class="space-y-4">
+                            <div class="p-3 bg-gray-50 rounded-lg">
+                                <div class="flex justify-between mb-1">
+                                    <p class="text-sm font-medium">How do I handle a Delta Dental claim?</p>
+                                    <p class="text-xs text-gray-500">2 hours ago</p>
+                                </div>
+                                <p class="text-sm text-gray-600">For Delta Dental claims, verify the patient's eligibility first, then submit through the Delta Dental portal using the...</p>
+                                <p class="text-xs text-gray-500 mt-1">Asked by: Jessica (Front Desk)</p>
+                            </div>
+                            <div class="p-3 bg-gray-50 rounded-lg">
+                                <div class="flex justify-between mb-1">
+                                    <p class="text-sm font-medium">What's the protocol for sterilizing the new instruments?</p>
+                                    <p class="text-xs text-gray-500">5 hours ago</p>
+                                </div>
+                                <p class="text-sm text-gray-600">The new instruments should be processed through the ultrasonic cleaner first, then wrapped and autoclaved at 134°C for...</p>
+                                <p class="text-xs text-gray-500 mt-1">Asked by: Michael (Dental Assistant)</p>
+                            </div>
+                            <div class="p-3 bg-gray-50 rounded-lg">
+                                <div class="flex justify-between mb-1">
+                                    <p class="text-sm font-medium">How do I explain a root canal procedure to an anxious patient?</p>
+                                    <p class="text-xs text-gray-500">Yesterday</p>
+                                </div>
+                                <p class="text-sm text-gray-600">When explaining a root canal to an anxious patient, focus on how it relieves pain rather than causes it. Use simple language...</p>
+                                <p class="text-xs text-gray-500 mt-1">Asked by: Dr. Chen (Dentist)</p>
+                            </div>
+                        </div>
+                        <button class="mt-4 text-dental-blue text-sm hover:underline">View all Q&A</button>
+                    </div>
+                </div>
+
+                <!-- Learning Paths -->
+                <div class="bg-white rounded-lg shadow-sm p-6 mb-8">
+                    <div class="flex justify-between items-center mb-6">
+                        <h3 class="text-lg font-semibold">Active Learning Paths</h3>
+                        <a href="#" class="text-dental-blue hover:underline text-sm">View All</a>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                        <!-- Front Desk Essentials -->
+                        <div class="border border-gray-200 rounded-lg p-4">
+                            <div class="flex justify-between items-start">
+                                <h4 class="text-md font-medium">Front Desk Essentials</h4>
+                                <span class="text-xs bg-dental-light text-dental-blue px-2 py-1 rounded-full">50% Complete</span>
+                            </div>
+                            <p class="text-sm text-gray-600 mt-2 mb-3">Core training for reception, scheduling, and patient management.</p>
+                            <div class="w-full bg-gray-100 rounded-full h-2 mb-3">
+                                <div class="bg-dental-blue h-2 rounded-full" style="width: 50%"></div>
+                            </div>
+                            <div class="flex justify-between text-xs text-gray-500">
+                                <span>7 modules completed</span>
+                                <span>7 remaining</span>
+                            </div>
+                            <button class="mt-4 w-full py-2 bg-dental-blue text-white rounded-lg hover:bg-opacity-90 transition">Continue Learning</button>
+                        </div>
+
+                        <!-- Dental Assistant 101 -->
+                        <div class="border border-gray-200 rounded-lg p-4">
+                            <div class="flex justify-between items-start">
+                                <h4 class="text-md font-medium">Dental Assistant 101</h4>
+                                <span class="text-xs bg-dental-light text-dental-blue px-2 py-1 rounded-full">30% Complete</span>
+                            </div>
+                            <p class="text-sm text-gray-600 mt-2 mb-3">Essential skills for chairside assistance and patient care.</p>
+                            <div class="w-full bg-gray-100 rounded-full h-2 mb-3">
+                                <div class="bg-dental-blue h-2 rounded-full" style="width: 30%"></div>
+                            </div>
+                            <div class="flex justify-between text-xs text-gray-500">
+                                <span>3 modules completed</span>
+                                <span>7 remaining</span>
+                            </div>
+                            <button class="mt-4 w-full py-2 bg-dental-blue text-white rounded-lg hover:bg-opacity-90 transition">Continue Learning</button>
+                        </div>
+
+                        <!-- Billing & Insurance Mastery -->
+                        <div class="border border-gray-200 rounded-lg p-4">
+                            <div class="flex justify-between items-start">
+                                <h4 class="text-md font-medium">Billing & Insurance Mastery</h4>
+                                <span class="text-xs bg-dental-light text-dental-blue px-2 py-1 rounded-full">80% Complete</span>
+                            </div>
+                            <p class="text-sm text-gray-600 mt-2 mb-3">Advanced training on claims, coding, and insurance verification.</p>
+                            <div class="w-full bg-gray-100 rounded-full h-2 mb-3">
+                                <div class="bg-dental-blue h-2 rounded-full" style="width: 80%"></div>
+                            </div>
+                            <div class="flex justify-between text-xs text-gray-500">
+                                <span>8 modules completed</span>
+                                <span>2 remaining</span>
+                            </div>
+                            <button class="mt-4 w-full py-2 bg-dental-blue text-white rounded-lg hover:bg-opacity-90 transition">Continue Learning</button>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <!-- Chat with Saige button -->
+    <button id="chat-button" class="fixed bottom-6 right-6 bg-dental-blue text-white rounded-full p-4 shadow-lg hover:bg-opacity-90 transition z-50">
+        <div class="flex items-center">
+            <i class="fas fa-comment-dots mr-2"></i>
+            <span>Ask Saige 🌿</span>
+        </div>
+    </button>
+
+    <!-- Chat Panel -->
+    <div id="chat-panel" class="chat-panel hidden fixed top-0 right-0 h-full w-full sm:w-96 bg-white shadow-lg z-50 flex flex-col">
+        <div class="p-4 border-b border-gray-200 flex justify-between items-center">
+            <div>
+                <h3 class="font-semibold">Ask Saige 🌿</h3>
+                <p class="text-xs text-gray-500">Your AI Dental Coach</p>
+            </div>
+            <button id="close-chat" class="text-gray-500 hover:text-gray-700">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="p-3 border-b border-gray-200 bg-dental-light">
+            <p class="text-xs text-dental-blue">Progress Tracking: 72% of Learning Path Completed</p>
+        </div>
+        <div class="flex-1 overflow-y-auto p-4" id="chat-messages">
+            <!-- Message from Saige -->
+            <div class="flex mb-4">
+                <div class="flex-shrink-0 mr-3">
+                    <div class="h-8 w-8 rounded-full bg-dental-light flex items-center justify-center">
+                        <span class="text-dental-blue text-xs">🌿</span>
+                    </div>
+                </div>
+                <div class="bg-gray-100 rounded-lg p-3 max-w-xs">
+                    <p class="text-sm">Welcome back! How can I help you today?</p>
+                    <p class="text-xs text-gray-500 mt-1">9:30 AM</p>
+                </div>
+            </div>
+
+            <!-- Message from User -->
+            <div class="flex mb-4 justify-end">
+                <div class="bg-dental-blue rounded-lg p-3 max-w-xs text-white">
+                    <p class="text-sm">How do I handle a billing dispute?</p>
+                    <p class="text-xs text-white text-opacity-75 mt-1">9:32 AM</p>
+                </div>
+                <div class="flex-shrink-0 ml-3">
+                    <div class="h-8 w-8 rounded-full bg-gray-300">
+                        <img class="h-8 w-8 rounded-full object-cover" src="/api/placeholder/32/32" alt="User avatar">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Message from Saige -->
+            <div class="flex mb-4">
+                <div class="flex-shrink-0 mr-3">
+                    <div class="h-8 w-8 rounded-full bg-dental-light flex items-center justify-center">
+                        <span class="text-dental-blue text-xs">🌿</span>
+                    </div>
+                </div>
+                <div class="bg-gray-100 rounded-lg p-3 max-w-xs">
+                    <p class="text-sm">Here's a tailored response for your practice: First, review the patient's account history to verify the disputed charges. Then, contact the patient to discuss their concerns. Document all conversations and be prepared to provide itemized statements. If a resolution can't be reached, offer to set up a payment plan or adjust the bill if appropriate according to your practice policy.</p>
+                    <p class="text-xs text-gray-500 mt-1">9:33 AM</p>
+                </div>
+            </div>
+
+            <!-- Message from User -->
+            <div class="flex mb-4 justify-end">
+                <div class="bg-dental-blue rounded-lg p-3 max-w-xs text-white">
+                    <p class="text-sm">Show me the difference between an implant and a bridge.</p>
+                    <p class="text-xs text-white text-opacity-75 mt-1">9:35 AM</p>
+                </div>
+                <div class="flex-shrink-0 ml-3">
+                    <div class="h-8 w-8 rounded-full bg-gray-300">
+                        <img class="h-8 w-8 rounded-full object-cover" src="/api/placeholder/32/32" alt="User avatar">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Message from Saige -->
+            <div class="flex mb-4">
+                <div class="flex-shrink-0 mr-3">
+                    <div class="h-8 w-8 rounded-full bg-dental-light flex items-center justify-center">
+                        <span class="text-dental-blue text-xs">🌿</span>
+                    </div>
+                </div>
+                <div class="bg-gray-100 rounded-lg p-3 max-w-xs">
+                    <p class="text-sm">Here's a concise, patient-friendly explanation: A dental implant is a titanium post surgically placed into the jawbone that acts as an artificial tooth root. A crown is attached to this post, creating a standalone replacement tooth. A dental bridge, on the other hand, uses the teeth on either side of the gap as anchors to support a false tooth in the middle. Implants don't affect adjacent teeth and better preserve bone health, while bridges are less invasive initially but may require replacing those anchor teeth with crowns.</p>
+                    <p class="text-xs text-gray-500 mt-1">9:36 AM</p>
+                </div>
+            </div>
+
+            <!-- Assessment message from Saige -->
+            <div class="flex mb-4">
+                <div class="flex-shrink-0 mr-3">
+                    <div class="h-8 w-8 rounded-full bg-dental-light flex items-center justify-center">
+                        <span class="text-dental-blue text-xs">🌿</span>
+                    </div>
+                </div>
+                <div class="bg-gray-100 rounded-lg p-3 max-w-xs">
+                    <p class="text-sm">Let's do a quick role-play to check your understanding about insurance verification. You're working the front desk and a new patient calls to schedule their first appointment. What information should you collect for insurance verification?</p>
+                    <p class="text-xs text-gray-500 mt-1">9:40 AM</p>
+                </div>
+            </div>
+
+            <!-- Message from User -->
+            <div class="flex mb-4 justify-end">
+                <div class="bg-dental-blue rounded-lg p-3 max-w-xs text-white">
+                    <p class="text-sm">Sure, let's do it. I would ask for: their full name, date of birth, insurance provider name, subscriber ID number, group number if applicable, the primary insured's information if different from the patient, and their relationship to the primary insured. I'd also verify if they have secondary insurance.</p>
+                    <p class="text-xs text-white text-opacity-75 mt-1">9:41 AM</p>
+                </div>
+                <div class="flex-shrink-0 ml-3">
+                    <div class="h-8 w-8 rounded-full bg-gray-300">
+                        <img class="h-8 w-8 rounded-full object-cover" src="/api/placeholder/32/32" alt="User avatar">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="border-t border-gray-200 p-4">
+            <div class="flex items-center">
+                <input type="text" placeholder="Type your message..." class="flex-1 border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-dental-blue">
+                <button id="send-message" class="ml-2 bg-dental-blue text-white rounded-lg p-2">
+                    <i class="fas fa-paper-plane"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

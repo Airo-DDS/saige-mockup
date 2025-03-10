@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="300" height="200" viewBox="0 0 300 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="300" height="200" rx="10" fill="#F9FCFF"/>
+  
+  <!-- Learning Path Line -->
+  <path d="M30 100C50 60 90 140 130 70C170 140 210 60 260 100" stroke="#039BE5" stroke-width="3" stroke-linecap="round" stroke-dasharray="1 7"/>
+  
+  <!-- Checkpoints -->
+  <circle cx="30" cy="100" r="12" fill="#E1F5FE" stroke="#039BE5" stroke-width="2"/>
+  <circle cx="30" cy="100" r="5" fill="#039BE5"/>
+  
+  <circle cx="90" cy="140" r="12" fill="#E1F5FE" stroke="#039BE5" stroke-width="2"/>
+  <circle cx="90" cy="140" r="5" fill="#039BE5"/>
+  
+  <circle cx="130" cy="70" r="12" fill="#E1F5FE" stroke="#039BE5" stroke-width="2"/>
+  <circle cx="130" cy="70" r="5" fill="#039BE5"/>
+  
+  <circle cx="170" cy="140" r="12" fill="#E1F5FE" stroke="#039BE5" stroke-width="2"/>
+  <circle cx="170" cy="140" r="5" fill="#039BE5"/>
+  
+  <circle cx="210" cy="60" r="12" fill="#E1F5FE" stroke="#039BE5" stroke-width="2"/>
+  <text x="210" y="65" font-family="Arial" font-size="14" fill="#039BE5" text-anchor="middle">?</text>
+  
+  <circle cx="260" cy="100" r="12" fill="#E1F5FE" stroke="#039BE5" stroke-width="2"/>
+  <text x="260" y="103" font-family="Arial" font-size="9" fill="#039BE5" text-anchor="middle">🏆</text>
+  
+  <!-- Annotations -->
+  <text x="30" cy="85" font-family="Arial" font-size="8" fill="#666666" text-anchor="middle">Start</text>
+  <text x="260" y="85" font-family="Arial" font-size="8" fill="#666666" text-anchor="middle">Mastery</text>
+  
+  <!-- Progress Bar at Bottom -->
+  <rect x="50" y="170" width="200" height="8" rx="4" fill="#E1F5FE"/>
+  <rect x="50" y="170" width="120" height="8" rx="4" fill="#039BE5"/>
+  <text x="150" y="190" font-family="Arial" font-size="10" fill="#666666" text-anchor="middle">60% Complete</text>
+</svg> 

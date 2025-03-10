@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="320" height="180" viewBox="0 0 320 180" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="320" height="180" rx="6" fill="#E1F5FE"/>
+  <rect x="10" y="10" width="300" height="160" rx="4" fill="#FFFFFF" fill-opacity="0.5"/>
+  
+  <!-- Play Button -->
+  <circle cx="160" cy="90" r="40" fill="#039BE5" fill-opacity="0.9"/>
+  <path d="M175 90L150 105V75L175 90Z" fill="white"/>
+  
+  <!-- Dental Icon Watermark -->
+  <g opacity="0.2">
+    <path d="M270 40C270 35.5817 273.582 32 278 32H292C296.418 32 300 35.5817 300 40V48C300 52.4183 296.418 56 292 56H278C273.582 56 270 52.4183 270 48V40Z" fill="#039BE5"/>
+    <path d="M275 76C275 71.5817 278.582 68 283 68H297C301.418 68 305 71.5817 305 76V84C305 88.4183 301.418 92 297 92H283C278.582 92 275 88.4183 275 84V76Z" fill="#039BE5"/>
+    <path d="M270 110C270 105.582 273.582 102 278 102H292C296.418 102 300 105.582 300 110V118C300 122.418 296.418 126 292 126H278C273.582 126 270 122.418 270 118V110Z" fill="#039BE5"/>
+    <path d="M275 146C275 141.582 278.582 138 283 138H297C301.418 138 305 141.582 305 146V154C305 158.418 301.418 162 297 162H283C278.582 162 275 158.418 275 154V146Z" fill="#039BE5"/>
+  </g>
+  
+  <text x="20" y="30" font-family="Arial" font-size="14" fill="#666666">Dental Training Video</text>
+  <text x="20" y="160" font-family="Arial" font-size="10" fill="#666666">Duration: 5:28</text>
+</svg> 
